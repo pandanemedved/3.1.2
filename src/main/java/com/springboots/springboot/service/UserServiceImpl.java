@@ -41,11 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User findUserById(Long id) {
-        if (userDao.findUserById(id) != null) {
-            return userDao.findUserById(id);
-        } else {
-            throw new EntityNotFoundException("Пользователь с таким " + id + " не найден");
+        User user = userDao.findUserById(id);
+        if (user == null) {
+            throw new EntityNotFoundException("Пользователь с таким " + id + "не найден");
         }
+        return user;
     }
 
     @Override
